@@ -22,7 +22,7 @@ public class GetRealLocalIP {
         // 判断Java版本
         String java_version = System.getProperty("java.version");
         if (!java_version.contains("1.8.")) {
-            return null;
+            throw new UnsupportedClassVersionError("Java版本不正确! (Java version is not correct!)");
         }
         // 获取NetworkInterface的对象
         Enumeration<NetworkInterface> netInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -48,12 +48,5 @@ public class GetRealLocalIP {
         // InetAddress.getLocalHost().getHostAddress() 用左边这种你一辈子都拿不到当前电脑的真实IP, 嘿嘿.
         List<String> res = getLocalRealIP();
         System.out.println(res);
-        if (res != null) {
-            System.out.println("Success");
-            System.out.println("当前IP地址为: " + res.get(0));
-        }
-        else {
-            System.out.println("Failed");
-        }
     }
 }
